@@ -52,6 +52,17 @@ createSchema(allElements, [{
 )
 ```
 
+A schema will usually take a form like below, and additional metadata can be passed through as well.
+
+```js
+[{
+    filter: Function, // optional
+    groups: [{
+        filter: Function
+    }]
+}]
+```
+
 
 ### filterByKey(regEx)
 
@@ -75,6 +86,7 @@ filter('Tags/Button/7c347ea', { id: '7c347ea', component }) /* false */
 filter('Tags/Button/1', { component, pageType: 'action' }) /* true */
 
 ```
+
 
 ## License
 
