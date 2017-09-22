@@ -18,16 +18,16 @@ npm install reflecto-archive
 Reduces a hierarchical data structure into a flat map. Useful for reducing nested modules into a searchable component map.
 
 ```js
-const allElements = flattenModules({
+flattenModules({
     Tags: {
         Button: [
             { id: '7c347ea', component },
-            { component }
+            { component, pageType: 'action' }
         ]
     }
 })
 
-/* output: allElements */
+/* output */
 {
     'Tags/Button/7c347ea': { id: '7c347ea', component },
     'Tags/Button/1': { component, pageType: 'action' }
