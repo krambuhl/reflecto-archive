@@ -34,7 +34,7 @@ flattenModules({
 }
 ```
 
-### createSchema(componentMap, schema)
+### createSchema(componentMap, filterList)
 
 Creates an schema object from a component map and a configuration.
 
@@ -52,7 +52,7 @@ createSchema(allElements, [{
 )
 ```
 
-A schema will usually take a form like below, and additional metadata can be passed through as well.
+A filter list will usually look something like:
 
 ```js
 [{
@@ -62,6 +62,8 @@ A schema will usually take a form like below, and additional metadata can be pas
     }]
 }]
 ```
+
+Additional metadata can be passed through as well.
 
 
 ### filterByKey(regEx)
