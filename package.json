@@ -1,0 +1,8 @@
+{
+  "name": "reflecto-archive",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:krambuhl/reflecto-archive.git",
+  "author": "Evan Krambuhl <thekrambuhl@gmail.com>",
+  "license": "MIT"
+}
