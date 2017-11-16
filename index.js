@@ -1,4 +1,5 @@
+module.exports.mapModules = require('./lib/mappers').mapModules
+module.exports.mapExamples = require('./lib/mappers').mapExamples
+module.exports.getModules = require('./lib/getters').getModules
+module.exports.getModule = require('./lib/getters').getModule
 module.exports.createSchema = require('./lib/createSchema')
-module.exports.filterByAttributes = require('./lib/filters').filterByAttributes
-module.exports.filterByKey = require('./lib/filters').filterByKey
-module.exports.flattenModules = require('./lib/flattenModules')
