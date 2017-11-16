@@ -1,6 +1,6 @@
 # reflecto-archive
 
-Helpers for creating a reflecto archive.
+Helpers for create and manipulating reflecto archives.
 
 ## Install
 
@@ -13,27 +13,6 @@ npm install reflecto-archive
 
 ## Methods
 
-### flattenModules(structuredData, { delimeters })
-
-Reduces a hierarchical data structure into a flat map. Useful for reducing nested modules into a searchable component map.
-
-```js
-flattenModules({
-    Tags: {
-        Button: [
-            { id: '7c347ea', component },
-            { component, pageType: 'action' }
-        ]
-    }
-})
-
-/* output */
-{
-    'Tags/Button/7c347ea': { id: '7c347ea', component },
-    'Tags/Button/1': { component, pageType: 'action' }
-}
-```
-
 ### createSchema(componentMap, filterList)
 
 Creates an schema object from a component map and a configuration.
@@ -41,12 +20,12 @@ Creates an schema object from a component map and a configuration.
 ```js
 createSchema(allElements, [{
     title: 'Tags',
-    filter: filterByKey(/Tags/),
+    filter: def => def.type === 'tags',
     groups: [{
-        filter: filterByAttributes({ pageType: undefined })
+        filter: def => def.pageType === undefined
     }, {
         title: 'Actions',
-        filter: filterByAttributes({ pageType: 'action' })
+        filter:  def => def.pageType === 'action'
     }]
   }]
 )
@@ -66,27 +45,67 @@ A filter list will usually look something like:
 Additional metadata can be passed through as well.
 
 
-### filterByKey(regEx)
+### mapModules(modules)
 
-Predicate factory to filter component map items by the keys.
+Maps an object of files into an array of module definitions.
 
 ```js
-const filter = filterByKey(/Tags/)
+mapModules({
+    Button: require('./Button')
+})
 
-filter('Tags/Button/7c347ea', { id: '7c347ea', component }) /* true */
+/*
+[{
+    name: 'Button',
+    module: require('./Button')
+}]
+*/
 ```
 
 
-### filterByAttributes(matcher)
+### mapExamples(examples)
 
-Predicate factory to filter component map items its properties. The `matcher` should be an object, values can be literals or a function taking the input value.
+Maps an object of files into an array of example definitions.
 
 ```js
-const filter = filterByAttributes({ pageType: 'action' })
+const examples = mapExamples({
+    Button: [
+        { title: 'ABC', component: <ex-tag /> },
+        { title: '124', component: <ex-tag /> }
+    ]
+})
 
-filter('Tags/Button/7c347ea', { id: '7c347ea', component }) /* false */
-filter('Tags/Button/1', { component, pageType: 'action' }) /* true */
+/*
+[{
+    name: 'Button',
+    id: 0,
+    title: 'ABC'
+    component: <ex-tag />
+}, {
+    name: 'Button',
+    id: 1,
+    title: '123'
+    component: <ex-tag />
+}]
+*/
+```
 
+
+### getModules(modules, { type, name })
+
+Filter an array of modules by their type and name fields.
+
+```js
+const modules = getModules(examples, { type, name })
+```
+
+
+### getModule(modules, { type, name, id })
+
+Find a specific module definition.
+
+```js
+const module = getModules(examples, { type, name, id })
 ```
 
 
