@@ -6,7 +6,7 @@ Helpers for create and manipulating reflecto archives.
 
 To install using npm, do:
 
-```js
+```shell
 npm install reflecto-archive
 ```
 
@@ -105,7 +105,7 @@ const modules = getModules(examples, { type, name })
 Find a specific module definition.
 
 ```js
-const module = getModules(examples, { type, name, id })
+const module = getModule(examples, { type, name, id })
 ```
 
 
