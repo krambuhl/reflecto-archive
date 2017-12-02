@@ -1,5 +1,4 @@
-module.exports.mapModules = require('./lib/mappers').mapModules
-module.exports.mapExamples = require('./lib/mappers').mapExamples
-module.exports.getModules = require('./lib/getters').getModules
-module.exports.getModule = require('./lib/getters').getModule
+module.exports.createArchive = require('./lib/createArchive')
 module.exports.createSchema = require('./lib/createSchema')
+module.exports.registerHelpers = require('./lib/handlebars-helpers')
+module.exports.archiveHelpers = require('./lib/archive-helpers')
